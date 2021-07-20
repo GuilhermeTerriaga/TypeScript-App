@@ -22,9 +22,28 @@ class NewsController {
        .catch((error) => console.error.bind(console, `Error ${error}`));
    }
 
-   create(req, res) {}
+   create(req, res) {
+     const model = req.params.body;
+     NewsService.create(model)
+       .then((news) => this.sendResponse(res, HttpStatus.Ok, 'News created'))
+       .catch((error) => console.error.bind(console, `Error ${error}`));
+   }
 
-   delete(req, res) {}
+   update(req, res) {
+     const _id = req.params.id;
+     // eslint-disable-next-line prefer-const
+     let model = req.params.body;
+     NewsService.update(_id, model)
+       .then((news) => this.sendResponse(res, HttpStatus.Ok, `${news.title} updated`))
+       .catch((error) => console.error.bind(console, `Error ${error}`));
+   }
+
+   delete(req, res) {
+     const _id = req.params.id;
+     NewsService.delete(_id)
+       .then(() => this.sendResponse(HttpStatus.Ok, 'News deleted'))
+       .catch((error) => console.error.bind(console, `Error ${error}`));
+   }
 }
 
 export default new NewsController();
