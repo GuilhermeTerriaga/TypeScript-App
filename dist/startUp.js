@@ -1,15 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
+Object.defineProperty(exports, '__esModule', { value: true });
+const express = require('express');
+
 class StartUp {
-    constructor() {
-        this.app = express();
-        this.routes();
-    }
-    routes() {
-        this.app.route('/teste').get((req, res) => {
-            res.send({ versao: '0.0.1' });
-        });
-    }
+  constructor() {
+    this.app = express();
+    this.routes();
+  }
+
+  routes() {
+    this.app.route('/teste').get((req, res) => {
+      res.send({ versao: '0.0.1' });
+    });
+  }
 }
 exports.default = new StartUp();
