@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
 
 import * as HttpStatus from 'http-status';
@@ -14,7 +15,12 @@ class NewsController {
        .catch((error) => console.error.bind(console, `Error ${error}`));
    }
 
-   getById(req, res) {}
+   getById(req, res) {
+     const _id = req.params.id;
+     NewsService.getById(_id)
+       .then((news) => this.sendResponse(res, HttpStatus.Ok, news))
+       .catch((error) => console.error.bind(console, `Error ${error}`));
+   }
 
    create(req, res) {}
 
