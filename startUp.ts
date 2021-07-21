@@ -1,6 +1,7 @@
 import * as express from 'express';
 import Db from './infra/db';
-import * as bodyParser from 'body-parser';
+
+
 class StartUp {
    public app: express.Application;
    private _db: Db;
@@ -9,7 +10,13 @@ class StartUp {
      this.app = express();
      this._db = new Db();
      this._db.createConnection();
+     this.middler();
      this.routes();
+   }
+
+   middler(){
+      this.app.use(express.json());
+      this.app.use(express.urlencoded({extended: false}));
    }
 
    routes() {
