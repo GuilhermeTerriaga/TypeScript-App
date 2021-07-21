@@ -31,14 +31,14 @@ class NewsController {
     // eslint-disable-next-line prefer-const
     let model = req.params.body;
     NewsService.update(_id, model)
-      .then((news) => Helper.sendResponse(res, HttpStatus.Ok, `${news.title} updated`))
+      .then((news) => Helper.sendResponse(res, HttpStatus.Ok, 'News updated'))
       .catch((error) => console.error.bind(console, `Error ${error}`));
   }
 
   delete(req, res) {
     const _id = req.params.id;
     NewsService.delete(_id)
-      .then(() => Helper.sendResponse(HttpStatus.Ok, 'News deleted'))
+      .then(() => Helper.sendResponse(res, HttpStatus.Ok, 'News deleted'))
       .catch((error) => console.error.bind(console, `Error ${error}`));
   }
 }
