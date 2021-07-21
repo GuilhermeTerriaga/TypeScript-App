@@ -1,16 +1,29 @@
-Object.defineProperty(exports, '__esModule', { value: true });
-const express = require('express');
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+const db_1 = require("./infra/db");
+const newsController_1 = require("./controller/newsController");
 class StartUp {
-  constructor() {
-    this.app = express();
-    this.routes();
-  }
-
-  routes() {
-    this.app.route('/teste').get((req, res) => {
-      res.send({ versao: '0.0.1' });
-    });
-  }
+    constructor() {
+        this.app = express();
+        this._db = new db_1.default();
+        this._db.createConnection();
+        this.middleware();
+        this.routes();
+    }
+    middleware() {
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: false }));
+    }
+    routes() {
+        this.app.route('/teste').get((req, res) => {
+            res.send({ versao: '0.0.1' });
+        });
+        this.app.route('/api/v1/news').get(newsController_1.default.get);
+        this.app.route('/api/v1/news/:id').get(newsController_1.default.getById);
+        this.app.route('/api/v1/news/').post(newsController_1.default.create);
+        this.app.route('/api/v1/news/:id').put(newsController_1.default.update);
+        this.app.route('/api/v1/news/:id').delete(newsController_1.default.delete);
+    }
 }
 exports.default = new StartUp();

@@ -1,5 +1,4 @@
-/* eslint-disable class-methods-use-this */
-import NewsRepository from '../repository/newsRepository';
+import NewsRepository from "../repository/newsRepository";
 
 class NewsService {
   get() {
