@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:14-alpine
 
 WORKDIR /usr/src/app
 
@@ -6,8 +6,8 @@ COPY package*.json ./
 
 RUN yarn
 
-COPY ./DIST .
+COPY ./dist .
 
 EXPOSE 3050
 
-CMD ["yarn","start"]
+CMD ["yarn", "start"]
