@@ -3,7 +3,9 @@
    "version": "1.0.0",
    "main": "index.js",
    "scripts": {
-      "start": "nodemon --watch '.' --exec 'ts-node program.ts' -e ts"
+      "compile": "tsc -w",
+      "start": "node ./dist/program.js",
+      "dev": "nodemon --watch '.' --exec 'ts-node program.ts' -e ts"
    },
    "license": "MIT",
    "dependencies": {
