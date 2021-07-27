@@ -3,7 +3,7 @@ services:
   api:
    image: p0sitronik/api-ts
    ports:
-    - "5500:3050"
+    - "80:3050"
    links:
     - link-db
   link-db:
