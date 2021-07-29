@@ -22,7 +22,7 @@ class StartUp {
    }
 
    routes() {
-     this.app.route('/').get((req, res) => {
+     this.app.route('/teste').get((req, res) => {
        res.send({ versao: '0.0.1' });
      });
 
